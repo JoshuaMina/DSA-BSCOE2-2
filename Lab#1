@@ -1,0 +1,92 @@
+number = int(input("Enter a single number to generate an array: "))
+array = [1]
+
+#Random Character Generator
+while len(array) < 9:
+    i = array[-1]
+    x = int(i+number*2)
+    array.append(x)
+
+print("This is your Array: ", array)
+
+def menu():
+    print("\n+++++++++++++++++++ME-N-U+++++++++++++++++++"
+          "\n\t1 -> Add an element"
+          "\n\t2 -> Insert an element"
+          "\n\t3 -> Modify an element"
+          "\n\t4 -> Delete an element"
+          "\n\t5 -> Arrange in ascending order"
+          "\n\t6 -> Arrange in descending order"
+          "\n\t7 -> Minimum and Maximum number in the array"
+          "\n\t8 -> The sum of the number in the array"
+          "\n\t9 -> Exit")
+
+ans = "Y"
+while ans == "Y":
+    menu()
+    try:
+        choise = int(input("\n\tInput your choice: "))
+    except ValueError:
+        print("\n\tInvalid Input! Try Again!")
+    else:
+        if choise == 1:
+            add = int(input("\n\tInput the element you want to add: "))
+            array.append(add)
+            print("\n\tThis is your Array: ", array)
+
+        elif choise == 2:
+            insert = int(input("\n\tInput the element you want to add: "))
+            index = int(input("\tInput the positon of the element: "))
+            array.insert(index-1,insert)
+            print("\n\tThis is your Array: ", array)
+
+        elif choise == 3:
+            element = int(input("\n\tInput the element you want to modify: "))
+            change = int(input("\tInput the element you want to put: "))
+            for i in range(len(array)):
+                if array[i] == element:
+                    array[i] = change
+            print("\n\tThis is your Array: ", array)
+
+        elif choise == 4:
+            element = int(input("\n\tInput the element you want to delete: "))
+            for i in range(len(array)):
+                if array[i] == element:
+                    error = 0
+                    break
+                else:
+                    error = 1
+            if error == 0:
+                array.remove(element)
+            else:
+                print("\t\tThe element is not found in the array")
+            print("\n\tThis is your Array: ", array)
+
+        elif choise == 5:
+            array.sort()
+            print("\n\tThis is your Array: ", array)
+
+        elif choise == 6:
+            array.reverse()
+            print("\n\tThis is your Array: ", array)
+
+        elif choise == 7:
+            small = min(array)
+            big = max(array)
+            print("\n\tThe minimum element is: ", small, "\n\tThe Maximum element is: ", big)
+            print("\n\tThis is your Array: ", array)
+
+        elif choise == 8:
+            sum = sum(array)
+            print("\n\tThe sum of the elements is: ", sum)
+            print("\n\tThis is your Array: ", array)
+
+        elif choise == 9:
+            print("\n\tThis is your final Array: ", array)
+            print("\n\n\t Thank you for using me!")
+            break
+
+        else:
+            print("\t\tInput Error! Try Again!")
+
+        ans = input("\tWould you like to go back to Menu (y) or Exit (n): ").upper()
